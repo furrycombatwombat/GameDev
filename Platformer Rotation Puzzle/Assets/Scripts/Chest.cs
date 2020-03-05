@@ -7,10 +7,11 @@ public class Chest : MonoBehaviour
     public BoxCollider2D chesthitbox;
     public bool locked;
     public bool open;
+    private Controls Player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = FindObjectOfType<Controls>();
     }
 
     // Update is called once per frame
@@ -20,9 +21,12 @@ public class Chest : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D chesthitbox)
     {
-        if (locked == false)
-        {
-           GetComponent<Animator>().SetBool("KeyCollected", true);
+        //if (locked == false)
+      //  {
+            if (Player.inventory.HasItem("Key"))
+            {
+                GetComponent<Animator>().SetBool("KeyCollected", true);
+            }
+     //   }
+            }
         }
-    }
-}

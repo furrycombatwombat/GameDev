@@ -10,10 +10,13 @@ public class Controls : MonoBehaviour
     public bool airborne = false;
     public float maxVelocity = 5;
     public float currentVelocity = 0;
+    public Inventory inventory;
+    public float tsfactor;
     // Start is called before the first frame update
     void Start()
     {
-        
+        tsfactor = 25;
+        inventory = FindObjectOfType<Inventory>();
     }
 
     // Update is called once per frame
@@ -27,22 +30,27 @@ public class Controls : MonoBehaviour
             if (currentVelocity < maxVelocity)
             {
                 if (IsrunningRight) {
-                    GetComponent<Transform>().Translate(currentVelocity, 0f, 0f);
+                  //  GetComponent<Rigidbody2D>().velocity.Set(currentVelocity,0f);
+                    GetComponent<Transform>().Translate(currentVelocity*Time.deltaTime*tsfactor, 0f, 0f);
                 }
                 if (IsrunningLeft)
                 {
-                    GetComponent<Transform>().Translate(-1*currentVelocity, 0f, 0f);
+                 //   GetComponent<Rigidbody2D>().velocity.Set(-1*currentVelocity,0f);
+                     GetComponent<Transform>().Translate(-1*currentVelocity*Time.deltaTime*tsfactor, 0f, 0f);
                 }
             }
             else
             {
                 if (IsrunningRight)
                 {
-                    GetComponent<Transform>().Translate(maxVelocity, 0f, 0f);
+                    Debug.Log("isrunning right while airborne");
+                  //  GetComponent<Rigidbody2D>().velocity.Set(maxVelocity * Time.deltaTime * tsfactor, 0f);
+                       GetComponent<Transform>().Translate(currentVelocity*Time.deltaTime*tsfactor, 0f, 0f);
                 }
                 if (IsrunningLeft)
                 {
-                    GetComponent<Transform>().Translate(-1 * maxVelocity, 0f, 0f);
+                    //GetComponent<Rigidbody2D>().velocity.Set(-1*maxVelocity * Time.deltaTime * tsfactor, 0f);
+                     GetComponent<Transform>().Translate(-1*currentVelocity*Time.deltaTime*tsfactor, 0f, 0f);
                 }
             }
                 }
@@ -76,6 +84,7 @@ public class Controls : MonoBehaviour
             {
                 IsrunningRight = false;
                 IsrunningLeft = false;
+                currentVelocity = 0;
             }
         }
         if (IsrunningRight && airborne == false)

@@ -8,10 +8,11 @@ public class Key : MonoBehaviour
     public bool collected;
     public BoxCollider2D hitbox;
     public bool active;
+    public Controls Player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = FindObjectOfType<Controls>();
     }
 
     // Update is called once per frame
@@ -28,6 +29,8 @@ public class Key : MonoBehaviour
                 Destroy(gameObject);
                 Debug.Log("Key Destroyed");
                 collected = true;
+                Player.inventory.items.Add(new InventoryItem("Key", "Opens Locked Stuff"));
+                active = false;
             }
         }
     }
