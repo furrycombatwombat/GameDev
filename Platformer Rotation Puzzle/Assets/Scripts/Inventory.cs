@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        items.Add(new InventoryItem("Gem", "So fancy"));
+     //   items.Add(new InventoryItem("Gem", "So fancy"));
     }
 
     void Update()
