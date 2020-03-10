@@ -15,7 +15,6 @@ public class Controls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tsfactor = 25;
         inventory = FindObjectOfType<Inventory>();
     }
 
@@ -43,7 +42,7 @@ public class Controls : MonoBehaviour
             {
                 if (IsrunningRight)
                 {
-                    Debug.Log("isrunning right while airborne");
+                 // Debug.Log("isrunning right while airborne");
                   //  GetComponent<Rigidbody2D>().velocity.Set(maxVelocity * Time.deltaTime * tsfactor, 0f);
                        GetComponent<Transform>().Translate(currentVelocity*Time.deltaTime*tsfactor, 0f, 0f);
                 }

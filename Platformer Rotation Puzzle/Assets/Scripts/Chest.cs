@@ -8,10 +8,12 @@ public class Chest : MonoBehaviour
     public bool locked;
     public bool open;
     private Controls Player;
+    public Inventory inventory;
     // Start is called before the first frame update
     void Start()
     {
         Player = FindObjectOfType<Controls>();
+        inventory = FindObjectOfType<Inventory>();
     }
 
     // Update is called once per frame
@@ -23,9 +25,10 @@ public class Chest : MonoBehaviour
     {
         //if (locked == false)
       //  {
-            if (Player.inventory.HasItem("Key"))
+            if (inventory.HasItem("Key"))
             {
                 GetComponent<Animator>().SetBool("KeyCollected", true);
+            inventory.RemoveItem("Key");
             }
      //   }
             }
